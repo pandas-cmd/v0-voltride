@@ -1,0 +1,7 @@
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+export function Intro({label,title,description}:{label:string;title:string;description:string}){return <section className="inner-intro page-enter"><div className="page-width"><div className="eyebrow">{label}</div><h1>{title}</h1><p>{description}</p></div><div className="hero-curves" aria-hidden="true"><span/><span/><span/></div></section>}
+export function FleetCTA(){return <section className="cta-band"><div className="page-width cta-inner"><div><div className="eyebrow mb-4">Your next chapter in mobility</div><h2>Let’s find the right way forward.</h2><p>Your routes. Your fleet. A connected plan.</p></div><Button asChild size="lg"><Link to="/fleet-assessment">Request a fleet assessment <ArrowUpRight/></Link></Button></div></section>}
+export function TextLink({to,children}:{to:'/'|'/coaches'|'/commercial-models'|'/ecosystem'|'/charging'|'/about'|'/fleet-assessment';children:React.ReactNode}){return <Link to={to} className="text-link">{children}<ArrowRight/></Link>}
+export function VerificationNote(){return <p className="disclaimer">Manufacturer profiles are presented for fleet evaluation, not as confirmed inventory or endorsements. Model specifications, availability, distribution rights, image permissions, warranty and service arrangements require confirmation before any commercial commitment.</p>}

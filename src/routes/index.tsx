@@ -1,24 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowUpRight, ArrowDown, BusFront, BatteryCharging, Network, Zap, Battery, Waypoints } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { FleetCTA, TextLink, VerificationNote } from '@/components/voltride/shared';
+import { manufacturers, pageHead } from '@/lib/voltride';
+import hero from '@/assets/img-01.jpg.asset.json';
+import coach from '@/assets/e-coach-01.jpg.asset.json';
+export const Route=createFileRoute('/')({head:()=>pageHead('Electric mobility. Connected by design.','Explore electric intercity coaches, leasing and purchase pathways, battery services and charging assessments with VoltRide Mobility.'),component:Home});
+function Home(){return <div><section className="hero"><img className="hero-image" src={hero.url} alt="Illustrative coach depot with a sculptural solar canopy" fetchPriority="high"/><div className="hero-curves" aria-hidden="true"><span/><span/><span/></div><div className="page-width hero-content"><div className="eyebrow">A connected future for intercity travel</div><h1>Electric mobility.<br/><span>Connected by design.</span></h1><p className="hero-description">VoltRide Mobility brings electric intercity coaches, flexible acquisition and connected infrastructure into one considered fleet journey.</p></div><div className="page-width hero-bottom"><div><div className="hero-actions"><Button asChild variant="hero" size="lg"><Link to="/coaches">Explore electric coaches<ArrowUpRight/></Link></Button><Button asChild variant="glass" size="lg"><Link to="/fleet-assessment">Request a fleet assessment<ArrowUpRight/></Link></Button></div><a className="hero-counter" href="#mobility"><span>01 / 03</span><i/><span>THE CONNECTED FLEET</span><ArrowDown size={13}/></a></div><p className="hero-caption">A new perspective on intercity mobility.<span>Illustrative depot concept · Not a confirmed VoltRide location</span></p></div></section><div className="hero-strip"><div className="strip-item"><BusFront/><div>Electric intercity coaches<small>The right asset for your operation</small></div></div><div className="strip-item"><BatteryCharging/><div>Connected infrastructure<small>Charging, batteries and operational support</small></div></div><div className="strip-item"><Network/><div>Flexible commercial pathways<small>Leasing and purchase options, assessed for you</small></div></div></div>
+<section id="mobility" className="section page-width"><div className="section-top"><div><div className="eyebrow">The VoltRide approach</div><h2 className="section-title">More than a coach.<br/>A connected way forward.</h2></div><p className="section-copy max-w-sm">The vehicle is only the beginning. We bring together the assets, infrastructure and expertise your transition needs.</p></div><div className="service-grid">{[{n:'01',title:'Your fleet. Electrified.',copy:'Explore electric intercity coaches selected around your routes, passenger requirements and operational priorities.',to:'/coaches',link:'Discover coach options'},{n:'02',title:'Your terms. Considered.',copy:'Compare coach leasing and outright-purchase options, where available, with a clear view of ownership and responsibilities.',to:'/commercial-models',link:'Explore commercial models'},{n:'03',title:'Your operations. Connected.',copy:'Bring charging, battery lifecycle services and operational coordination into a single, structured fleet assessment.',to:'/ecosystem',link:'Meet the ecosystem'}].map(s=><article className="service-item" key={s.n}><span className="number">{s.n} /</span><h3>{s.title}</h3><p>{s.copy}</p><TextLink to={s.to as '/coaches'|'/commercial-models'|'/ecosystem'}>{s.link}</TextLink></article>)}</div></section>
+<section className="section dark-section"><div className="page-width ecosystem-grid"><div><div className="eyebrow">Designed to work together</div><h2 className="section-title">One fleet.<br/>An entire ecosystem.</h2><p className="section-copy mt-5">VoltRide leads your coach journey. Specialist businesses bring clearly defined services, coordinated around your operation.</p><div className="system-list"><Link to="/charging" className="system-row"><Zap/><div><strong>Voltrium</strong><small>Charging infrastructure & assessments</small></div><ArrowUpRight/></Link><Link to="/ecosystem" className="system-row"><Battery/><div><strong>VoltCycle</strong><small>Battery leasing & lifecycle management</small></div><ArrowUpRight/></Link><Link to="/ecosystem" className="system-row"><Waypoints/><div><strong>Autovance</strong><small>Platform management & operations coordination</small></div><ArrowUpRight/></Link></div><TextLink to="/ecosystem">Explore the connected ecosystem</TextLink></div><div><img className="ecosystem-photo" src={coach.url} alt="Supplied Yutong coach side profile in an illuminated display environment" loading="lazy"/><p className="photo-caption">A considered approach, from the coach to the wider system.<br/>Supplied manufacturer imagery · Model and availability subject to verification.</p></div></div></section>
+<section className="section page-width"><div className="section-top"><div><div className="eyebrow">Explore the manufacturers</div><h2 className="section-title">Built around your next journey.</h2></div><TextLink to="/coaches">Explore all coach options</TextLink></div><div className="oem-grid">{manufacturers.map(m=><Link className="oem-card" key={m.slug} to="/coaches/$manufacturer" params={{manufacturer:m.slug}}><img className="oem-logo" src={m.logo} alt={`${m.name} logo`} loading="lazy"/><h3>{m.name}</h3><p>{m.description}</p><span className="text-link mt-5">Explore manufacturer<ArrowUpRight size={16}/></span></Link>)}</div><VerificationNote/></section><FleetCTA/></div>}
