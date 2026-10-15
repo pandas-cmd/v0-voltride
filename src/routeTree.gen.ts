@@ -10,33 +10,150 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ChargingRouteImport } from './routes/charging'
+import { Route as CoachesRouteImport } from './routes/coaches'
+import { Route as CommercialModelsRouteImport } from './routes/commercial-models'
+import { Route as EcosystemRouteImport } from './routes/ecosystem'
+import { Route as FleetAssessmentRouteImport } from './routes/fleet-assessment'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as CoachesIndexRouteImport } from './routes/coaches.index'
+import { Route as CoachesManufacturerRouteImport } from './routes/coaches.$manufacturer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChargingRoute = ChargingRouteImport.update({
+  id: '/charging',
+  path: '/charging',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachesRoute = CoachesRouteImport.update({
+  id: '/coaches',
+  path: '/coaches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialModelsRoute = CommercialModelsRouteImport.update({
+  id: '/commercial-models',
+  path: '/commercial-models',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcosystemRoute = EcosystemRouteImport.update({
+  id: '/ecosystem',
+  path: '/ecosystem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FleetAssessmentRoute = FleetAssessmentRouteImport.update({
+  id: '/fleet-assessment',
+  path: '/fleet-assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachesIndexRoute = CoachesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CoachesRoute,
+} as any)
+const CoachesManufacturerRoute = CoachesManufacturerRouteImport.update({
+  id: '/$manufacturer',
+  path: '/$manufacturer',
+  getParentRoute: () => CoachesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/charging': typeof ChargingRoute
+  '/coaches': typeof CoachesRouteWithChildren
+  '/commercial-models': typeof CommercialModelsRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/fleet-assessment': typeof FleetAssessmentRoute
+  '/privacy': typeof PrivacyRoute
+  '/coaches/$manufacturer': typeof CoachesManufacturerRoute
+  '/coaches/': typeof CoachesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/charging': typeof ChargingRoute
+  '/commercial-models': typeof CommercialModelsRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/fleet-assessment': typeof FleetAssessmentRoute
+  '/privacy': typeof PrivacyRoute
+  '/coaches/$manufacturer': typeof CoachesManufacturerRoute
+  '/coaches': typeof CoachesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/charging': typeof ChargingRoute
+  '/coaches': typeof CoachesRouteWithChildren
+  '/commercial-models': typeof CommercialModelsRoute
+  '/ecosystem': typeof EcosystemRoute
+  '/fleet-assessment': typeof FleetAssessmentRoute
+  '/privacy': typeof PrivacyRoute
+  '/coaches/$manufacturer': typeof CoachesManufacturerRoute
+  '/coaches/': typeof CoachesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/charging'
+    | '/coaches'
+    | '/commercial-models'
+    | '/ecosystem'
+    | '/fleet-assessment'
+    | '/privacy'
+    | '/coaches/$manufacturer'
+    | '/coaches/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/charging'
+    | '/commercial-models'
+    | '/ecosystem'
+    | '/fleet-assessment'
+    | '/privacy'
+    | '/coaches/$manufacturer'
+    | '/coaches'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/charging'
+    | '/coaches'
+    | '/commercial-models'
+    | '/ecosystem'
+    | '/fleet-assessment'
+    | '/privacy'
+    | '/coaches/$manufacturer'
+    | '/coaches/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ChargingRoute: typeof ChargingRoute
+  CoachesRoute: typeof CoachesRouteWithChildren
+  CommercialModelsRoute: typeof CommercialModelsRoute
+  EcosystemRoute: typeof EcosystemRoute
+  FleetAssessmentRoute: typeof FleetAssessmentRoute
+  PrivacyRoute: typeof PrivacyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +165,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/charging': {
+      id: '/charging'
+      path: '/charging'
+      fullPath: '/charging'
+      preLoaderRoute: typeof ChargingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coaches': {
+      id: '/coaches'
+      path: '/coaches'
+      fullPath: '/coaches'
+      preLoaderRoute: typeof CoachesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-models': {
+      id: '/commercial-models'
+      path: '/commercial-models'
+      fullPath: '/commercial-models'
+      preLoaderRoute: typeof CommercialModelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecosystem': {
+      id: '/ecosystem'
+      path: '/ecosystem'
+      fullPath: '/ecosystem'
+      preLoaderRoute: typeof EcosystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fleet-assessment': {
+      id: '/fleet-assessment'
+      path: '/fleet-assessment'
+      fullPath: '/fleet-assessment'
+      preLoaderRoute: typeof FleetAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coaches/': {
+      id: '/coaches/'
+      path: '/'
+      fullPath: '/coaches/'
+      preLoaderRoute: typeof CoachesIndexRouteImport
+      parentRoute: typeof CoachesRoute
+    }
+    '/coaches/$manufacturer': {
+      id: '/coaches/$manufacturer'
+      path: '/$manufacturer'
+      fullPath: '/coaches/$manufacturer'
+      preLoaderRoute: typeof CoachesManufacturerRouteImport
+      parentRoute: typeof CoachesRoute
+    }
   }
 }
 
+interface CoachesRouteChildren {
+  CoachesManufacturerRoute: typeof CoachesManufacturerRoute
+  CoachesIndexRoute: typeof CoachesIndexRoute
+}
+
+const CoachesRouteChildren: CoachesRouteChildren = {
+  CoachesManufacturerRoute: CoachesManufacturerRoute,
+  CoachesIndexRoute: CoachesIndexRoute,
+}
+
+const CoachesRouteWithChildren =
+  CoachesRoute._addFileChildren(CoachesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ChargingRoute: ChargingRoute,
+  CoachesRoute: CoachesRouteWithChildren,
+  CommercialModelsRoute: CommercialModelsRoute,
+  EcosystemRoute: EcosystemRoute,
+  FleetAssessmentRoute: FleetAssessmentRoute,
+  PrivacyRoute: PrivacyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
