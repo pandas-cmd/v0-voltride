@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      fleet_enquiries: {
+        Row: {
+          company: string
+          consent: boolean
+          created_at: string
+          email: string
+          fleet_size: number
+          id: string
+          interest: string
+          message: string
+          name: string
+          phone: string
+          routes: string
+          status: string
+        }
+        Insert: {
+          company: string
+          consent: boolean
+          created_at?: string
+          email: string
+          fleet_size: number
+          id?: string
+          interest: string
+          message?: string
+          name: string
+          phone?: string
+          routes?: string
+          status?: string
+        }
+        Update: {
+          company?: string
+          consent?: boolean
+          created_at?: string
+          email?: string
+          fleet_size?: number
+          id?: string
+          interest?: string
+          message?: string
+          name?: string
+          phone?: string
+          routes?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
